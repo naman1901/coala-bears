@@ -149,6 +149,7 @@ julia -e "Pkg.add(\"Lint\")"
 sudo luarocks install luacheck --deps-mode=none
 
 # Infer commands
+rm -rf ~/infer-linux64-v0.7.0
 if [ ! -e ~/infer-linux64-v0.7.0/infer/bin ]; then
   wget -nc -O ~/infer.tar.xz https://github.com/facebook/infer/releases/download/v0.7.0/infer-linux64-v0.7.0.tar.xz
   tar xf ~/infer.tar.xz -C ~/

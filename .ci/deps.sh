@@ -149,12 +149,14 @@ julia -e "Pkg.add(\"Lint\")"
 sudo luarocks install luacheck --deps-mode=none
 
 # Infer commands
-if [ ! -e ~/infer-0.10.0/infer/bin ]; then
-  wget -nc -O ~/infer.tar.xz https://github.com/facebook/infer/archive/v0.10.0.tar.gz
+if [ ! -e ~/infer-linux64-v0.10.0/infer/bin ]; then
+  wget -nc -O ~/infer.tar.xz https://github.com/facebook/infer/releases/download/v0.10.0/infer-linux64-v0.10.0.tar.xz
   tar xf ~/infer.tar.xz -C ~/
-  cd ~/infer-0.10.0
-  # Use reason 0.6.0
-  sed -i 's/"reason" {="1.4.0"}/"reason" {="1.6.0"}/' opam
+  cd ~/infer-linux64-v0.10.0
+  opam init --y
+  opam update
+  opam pin add --yes --no-action infer .
+  opam install --deps-only --yes infer
   # Compile Infer
   ./build-infer.sh java
 fi
